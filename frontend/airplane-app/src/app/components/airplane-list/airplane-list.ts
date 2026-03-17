@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import {AirplaneService} from '../../services/airplane-service';
 import {Airplane} from '../../models/airplane';
+import { TailNumberPipe } from '../../pipes/tail-number-pipe';
 
 @Component({
   selector: 'app-airplane-list',
-  imports: [],
+  imports: [TailNumberPipe],
   templateUrl: './airplane-list.html',
   styleUrl: './airplane-list.scss',
 })

@@ -14,7 +14,7 @@
       <tbody>
         @for (plane of airplanes; track plane.id) {
           <tr>
-            <td>{{ plane.tailNumber }}</td>
+            <td>{{ plane.tailNumber | tailNumber}}</td>
             <td>{{ plane.model }}</td>
             <td>{{ plane.manufacturer }}</td>
           </tr>
