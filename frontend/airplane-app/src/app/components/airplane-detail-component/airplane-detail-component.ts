@@ -4,10 +4,11 @@ import { AirplaneService } from '../../services/airplane-service';
 import {Airplane} from '../../models/airplane';
 import {TailNumberPipe} from '../../pipes/tail-number-pipe';
 import { NgClass } from '@angular/common';
+import {MaintenanceBarComponent} from '../maintenance-bar-component/maintenance-bar-component';
 
 @Component({
   selector: 'app-airplane-detail-component',
-  imports: [RouterLink, TailNumberPipe, NgClass],
+  imports: [RouterLink, TailNumberPipe, NgClass, MaintenanceBarComponent],
   templateUrl: './airplane-detail-component.html',
   styleUrl: './airplane-detail-component.scss',
 })
@@ -27,5 +28,11 @@ export class AirplaneDetailComponent implements OnInit {
     const percent =
       (this.airplane.flightsSinceLastMaintenance / this.airplane.maintenanceIntervalFlights) * 100;
     return Math.min(percent, 100);
+  }
+
+  handleFlightAdded() {
+    if (this.airplane) {
+      this.airplaneService.incrementFlights(this.airplane.id);
+    }
   }
 }

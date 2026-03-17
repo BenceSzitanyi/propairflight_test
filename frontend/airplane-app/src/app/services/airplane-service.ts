@@ -38,14 +38,24 @@ export class AirplaneService {
     },
   ];
 
-  constructor() {
-  }
+  constructor() {}
 
-  getAirplanes():Airplane[] {
+  getAirplanes(): Airplane[] {
     return this.airplanes;
   }
 
   getById(id: string | null): Airplane | undefined {
-    return this.airplanes.find(airplane => airplane.id === id);
+    return this.airplanes.find((airplane) => airplane.id === id);
+  }
+
+  incrementFlights(id: string): void {
+    const plane = this.airplanes.find((p) => p.id === id);
+    if (plane) {
+      plane.flightsSinceLastMaintenance++;
+
+      if (plane.flightsSinceLastMaintenance >= plane.maintenanceIntervalFlights) {
+        plane.status = 'maintenance';
+      }
+    }
   }
 }
