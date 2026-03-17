@@ -1,0 +1,17 @@
+<div class="maintenance-wrapper">
+  <div class="progress-container">
+    <div class="progress-bar" [style.width.%]="percentage"
+         [ngClass]="{
+          'near-limit': percentage >= 75 && percentage < 100,
+          'at-limit': percentage >= 100
+         }">
+    </div>
+  </div>
+
+  <div class="controls">
+    <span>Status: <strong>{{ status }}</strong> ({{ current }} / {{ interval }} flights)</span>
+    <button (click)="onAddFlight()" [disabled]="status === 'maintenance'">
+      Add Flight
+    </button>
+  </div>
+</div>
