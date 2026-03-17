@@ -10,3 +10,16 @@
     </ul>
   }
 </div>
+
+<div class="maintenance-section">
+  <p>Maintenance progress: {{maintenancePercentage}}%</p>
+  <div class="progress-container">
+    <div class="progress-bar" [style.width.%]="maintenancePercentage"
+    [ngClass]="{
+      'near-limit': maintenancePercentage >= 75 && maintenancePercentage < 100,
+      'at-limit': maintenancePercentage >= 100
+    }">
+
+    </div>
+  </div>
+</div>

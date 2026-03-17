@@ -13,7 +13,7 @@
 
       <tbody>
         @for (plane of airplanes; track plane.id) {
-          <tr>
+          <tr [ngClass]="{'maintenance-row': plane.status === 'maintenance'}">
             <a [routerLink]="['/airplanes',plane.id]">
               <td>{{ plane.tailNumber | tailNumber}}</td>
             </a>
