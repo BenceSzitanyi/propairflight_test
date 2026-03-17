@@ -37,4 +37,11 @@ export class AirplaneService {
       flightsSinceLastMaintenance: 100,
     },
   ];
+
+  constructor() {
+  }
+
+  getAirplanes():Airplane[] {
+    return this.airplanes;
+  }
 }
