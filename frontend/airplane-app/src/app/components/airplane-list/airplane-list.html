@@ -14,7 +14,9 @@
       <tbody>
         @for (plane of airplanes; track plane.id) {
           <tr>
-            <td>{{ plane.tailNumber | tailNumber}}</td>
+            <a [routerLink]="['/airplanes',plane.id]">
+              <td>{{ plane.tailNumber | tailNumber}}</td>
+            </a>
             <td>{{ plane.model }}</td>
             <td>{{ plane.manufacturer }}</td>
           </tr>

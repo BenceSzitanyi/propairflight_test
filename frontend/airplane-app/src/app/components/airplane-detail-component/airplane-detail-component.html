@@ -1,0 +1,12 @@
+<div class="detail-container">
+  @if (airplane) {
+    <h2>Details for {{airplane.tailNumber | tailNumber}}</h2>
+    <ul>
+      <li><strong>Model: </strong> {{airplane.model}}</li>
+      <li><strong>Manufacturer: </strong> {{airplane.manufacturer}}</li>
+      <li><strong>Capacity: </strong> {{airplane.capacity}}</li>
+      <li><strong>Status: </strong> {{airplane.status}}</li>
+      <li><strong>Flight since maintenance: </strong> {{airplane.flightsSinceLastMaintenance}}</li>
+    </ul>
+  }
+</div>

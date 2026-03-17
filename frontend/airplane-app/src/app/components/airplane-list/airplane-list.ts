@@ -2,10 +2,11 @@ import { Component, inject } from '@angular/core';
 import {AirplaneService} from '../../services/airplane-service';
 import {Airplane} from '../../models/airplane';
 import { TailNumberPipe } from '../../pipes/tail-number-pipe';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-airplane-list',
-  imports: [TailNumberPipe],
+  imports: [TailNumberPipe, RouterLink],
   templateUrl: './airplane-list.html',
   styleUrl: './airplane-list.scss',
 })

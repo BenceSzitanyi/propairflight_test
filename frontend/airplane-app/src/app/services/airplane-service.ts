@@ -44,4 +44,8 @@ export class AirplaneService {
   getAirplanes():Airplane[] {
     return this.airplanes;
   }
+
+  getById(id: string | null): Airplane | undefined {
+    return this.airplanes.find(airplane => airplane.id === id);
+  }
 }
