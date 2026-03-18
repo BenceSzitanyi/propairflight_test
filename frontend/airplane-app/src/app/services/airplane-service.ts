@@ -1,11 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {Airplane} from '../models/airplane';
+import {Observable} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AirplaneService {
-  private airplanes: Airplane[] = [
+  /*private airplanes: Airplane[] = [
     {
       id: '1',
       tailNumber: 'N12345',
@@ -36,16 +38,27 @@ export class AirplaneService {
       maintenanceIntervalFlights: 100,
       flightsSinceLastMaintenance: 100,
     },
-  ];
+  ];*/
+
+  private http = inject(HttpClient);
+  private apiUrl = "http://localhost:3000/api/airplanes";
 
   constructor() {}
 
-  getAirplanes(): Airplane[] {
+  /*getAirplanes(): Airplane[] {
     console.log(this.airplanes)
     return this.airplanes;
+  }*/
+
+  getAirplanes(): Observable<Airplane[]> {
+    return this.http.get<Airplane[]>(this.apiUrl)
   }
 
-  getById(id: string | null): Airplane | undefined {
+  getById(id:string){
+    return this.http.get<Airplane>(this.apiUrl+`/${id}`)
+  }
+
+  /*getById(id: string | null): Airplane | undefined {
     return this.airplanes.find((airplane) => airplane.id === id);
   }
 
@@ -69,5 +82,5 @@ export class AirplaneService {
     this.airplanes.push(newAirplane);
     console.log(this.airplanes);
     return newAirplane;
-  }
+  }*/
 }

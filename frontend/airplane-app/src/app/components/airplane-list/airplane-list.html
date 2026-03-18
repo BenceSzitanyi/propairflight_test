@@ -1,30 +1,45 @@
-<h2>Airplanes</h2>
-<button routerLink="/airplanes/new" class="add-btn">+ Add New Airplane</button>
+<div class="header-actions">
+  <h2>Airplanes</h2>
+  <button routerLink="/airplanes/new" class="add-btn">+ Add New Airplane</button>
+</div>
 
-<div class="airplane-container">
-  @if (airplanes.length > 0){
-    <table>
-      <thead>
+@if (isLoading) {
+  <div class="loading-spinner">
+    <p>Loading fleet data from server...</p>
+  </div>
+} @else if (errorMessage) {
+  <div class="error-box">
+    <p>{{ errorMessage }}</p>
+    <button (click)="fetchAirplanes()">Retry</button>
+  </div>
+} @else {
+  <div class="airplane-container">
+    @if (airplanes.length > 0){
+      <table>
+        <thead>
         <tr>
           <th>Tail Number</th>
           <th>Model</th>
           <th>Manufacturer</th>
         </tr>
-      </thead>
+        </thead>
 
-      <tbody>
-        @for (plane of airplanes; track plane.id) {
-          <tr [ngClass]="{'maintenance-row': plane.status === 'maintenance'}">
-            <a [routerLink]="['/airplanes',plane.id]">
-              <td>{{ plane.tailNumber | tailNumber}}</td>
-            </a>
-            <td>{{ plane.model }}</td>
-            <td>{{ plane.manufacturer }}</td>
-          </tr>
-        }
-      </tbody>
-    </table>
-  } @else {
-    <p>No airplanes found in the system.</p>
-  }
-</div>
+        <tbody>
+          @for (plane of airplanes; track plane.id) {
+            <tr [ngClass]="{'maintenance-row': plane.status === 'maintenance'}">
+              <a [routerLink]="['/airplanes',plane.id]">
+                <td>{{ plane.tailNumber | tailNumber}}</td>
+              </a>
+              <td>{{ plane.model }}</td>
+              <td>{{ plane.manufacturer }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    } @else {
+      <p>No airplanes found in the system.</p>
+    }
+  </div>
+}
+
+
