@@ -62,6 +62,10 @@ export class AirplaneService {
     return this.http.post<Airplane>("http://localhost:3000/api/airplanes/increment-flights", {})
   }
 
+  addAirplane(plane:any):Observable<Airplane>{
+    return this.http.post<Airplane>("http://localhost:3000/api/airplanes",plane);
+  }
+
   /*getById(id: string | null): Airplane | undefined {
     return this.airplanes.find((airplane) => airplane.id === id);
   }

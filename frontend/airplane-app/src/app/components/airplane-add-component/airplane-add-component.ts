@@ -31,10 +31,18 @@ export class AirplaneAddComponent {
 
   onSubmit() {
     if (this.airplaneForm.valid) {
-      const formValue = this.airplaneForm.value as any;
-      const newPlane = this.airplaneService.addAirplane(formValue);
+      const newPlaneData = this.airplaneForm.getRawValue();
 
-      this.router.navigate(['/airplanes',newPlane.id]);
+      this.airplaneService.addAirplane(this.airplaneForm.value).subscribe({
+        next: (createdPlane) => {
+          console.log('Airplane created successfully:', createdPlane);
+          this.router.navigate(['/airplanes', createdPlane.id]);
+        },
+        error: (err) => {
+          alert('Could not save airplane. Error: ' + (err.error?.message || 'Unknown error'));
+          console.error('Save error:', err);
+        }
+      });
     }
   }
 }
