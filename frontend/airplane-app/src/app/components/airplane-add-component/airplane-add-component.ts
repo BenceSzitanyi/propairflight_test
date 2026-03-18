@@ -15,14 +15,19 @@ export class AirplaneAddComponent {
   private router = inject(Router);
 
   airplaneForm = this.fb.group({
-    tailNumber: ['', Validators.required],
+    tailNumber: ['', [Validators.required, Validators.minLength(3)]],
     model: ['', Validators.required],
     manufacturer: ['', Validators.required],
-    capacity: ['', Validators.required],
-    maintenanceIntervalFlights: ['', Validators.required],
-    flightsSinceLastMaintenance: ['', Validators.required],
+    capacity: ['', [Validators.required, Validators.min(1)]],
+    maintenanceIntervalFlights: ['', [Validators.required, Validators.min(1)]],
+    flightsSinceLastMaintenance: ['', [Validators.required, Validators.min(0)]],
     status: ['active']
   });
+
+  isFieldInvalid(fieldName: string): boolean {
+    const control = this.airplaneForm.get(fieldName);
+    return !!(control && control.invalid && (control.touched || control.dirty));
+  }
 
   onSubmit() {
     if (this.airplaneForm.valid) {

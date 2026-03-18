@@ -1,0 +1,23 @@
+.form-group {
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+
+  label { font-weight: bold; margin-bottom: 0.3rem; }
+
+  input.input-error {
+    border: 2px solid #dc3545;
+    outline: none;
+  }
+}
+
+.error-text {
+  color: #dc3545;
+  font-size: 0.85rem;
+  margin-top: 0.2rem;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}

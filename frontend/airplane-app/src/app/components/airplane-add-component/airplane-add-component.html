@@ -4,31 +4,49 @@
   <div class="form-group">
     <label>Tail number: </label>
     <input formControlName="tailNumber" placeholder="e.g. N12345">
+    @if (isFieldInvalid('tailNumber')) {
+      <small class="error-text">Tail Number is required (min. 3 characters).</small>
+    }
   </div>
 
   <div class="form-group">
     <label>Model: </label>
     <input formControlName="model" placeholder="e.g. A320">
+    @if (isFieldInvalid('model')) {
+      <small class="error-text">Model is required.</small>
+    }
   </div>
 
   <div class="form-group">
     <label>Manufacturer: </label>
     <input formControlName="manufacturer" placeholder="e.g. Airbus">
+    @if (isFieldInvalid('manufacturer')) {
+      <small class="error-text">Manufacturerc is required.</small>
+    }
   </div>
 
   <div class="form-group">
     <label>Capacity: </label>
     <input type="number" formControlName="capacity">
+    @if (isFieldInvalid('capacity')) {
+      <small class="error-text">Capacity must be at least 1.</small>
+    }
   </div>
 
   <div class="form-group">
     <label>Maintenance interval: </label>
     <input type="number" formControlName="maintenanceIntervalFlights">
+    @if (isFieldInvalid('maintenanceIntervalFlights')) {
+      <small class="error-text">Interval must be at least 1 flight.</small>
+    }
   </div>
 
   <div class="form-group">
     <label>Flights since last maintenance: </label>
     <input type="number" formControlName="flightsSinceLastMaintenance">
+    @if (isFieldInvalid('flightsSinceLastMaintenance')) {
+      <small class="error-text">This must be a non negative integer.</small>
+    }
   </div>
 
   <div class="actions">
