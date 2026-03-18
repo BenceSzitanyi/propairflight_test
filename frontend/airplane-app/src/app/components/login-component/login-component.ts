@@ -17,7 +17,12 @@ export class LoginComponent {
   loginForm = this.fb.nonNullable.group({
     email: ['pilot@airline.com', [Validators.required, Validators.email]],
     password: ['pilot123', Validators.required],
-  })
+  });
+
+  isFieldInvalid(fieldName: string): boolean {
+    const control = this.loginForm.get(fieldName);
+    return !!(control && control.invalid && (control.touched || control.dirty));
+  }
 
   onSubmit() {
     if (this.loginForm.valid) {
