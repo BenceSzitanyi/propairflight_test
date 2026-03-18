@@ -50,9 +50,17 @@ export class AirplaneDetailComponent implements OnInit {
     return Math.min(percent, 100);
   }
 
-  /*handleFlightAdded() {
+  handleFlightAdded() {
     if (this.airplane) {
-      this.airplaneService.incrementFlights(this.airplane.id);
+      this.airplaneService.incrementFlights(this.airplane.id).subscribe({
+        next: (updatedPlane) => {
+          this.airplane = updatedPlane;
+        },
+        error: (error) => {
+          alert("Could not update flight count.");
+          console.error('Detail Load Error:', error);
+        }
+      });
     }
-  }*/
+  }
 }

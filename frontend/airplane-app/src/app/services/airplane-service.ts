@@ -58,6 +58,10 @@ export class AirplaneService {
     return this.http.get<Airplane>(this.apiUrl+`/${id}`)
   }
 
+  incrementFlights(id:string){
+    return this.http.post<Airplane>("http://localhost:3000/api/airplanes/increment-flights", {})
+  }
+
   /*getById(id: string | null): Airplane | undefined {
     return this.airplanes.find((airplane) => airplane.id === id);
   }
