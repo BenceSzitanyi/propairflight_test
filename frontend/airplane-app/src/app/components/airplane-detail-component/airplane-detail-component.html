@@ -1,5 +1,14 @@
 <div class="detail-container">
-  @if (airplane) {
+  @if (isLoading) {
+    <div class="status-msg">
+      <p>Fetching airplane blueprints</p>
+    </div>
+  } @else if (errorMessage) {
+    <div class="error-box">
+      <p>{{errorMessage}}</p>
+      <a routerLink="/airplanes">Return to Fleet</a>
+    </div>
+  } @else if (airplane){
     <h2>Details for {{airplane.tailNumber | tailNumber}}</h2>
     <ul>
       <li><strong>Model: </strong> {{airplane.model}}</li>
@@ -11,14 +20,14 @@
   }
 </div>
 
-@if (airplane){
+<!--@if (airplane){
   <app-maintenance-bar-component
     [current]="airplane.flightsSinceLastMaintenance"
     [interval]="airplane.maintenanceIntervalFlights"
     [status]="airplane.status"
     (flightAdded)="handleFlightAdded()">
   ></app-maintenance-bar-component>
-}
+}-->
 
 <div class="controls">
   <a routerLink="/airplanes">Back to the list</a>
