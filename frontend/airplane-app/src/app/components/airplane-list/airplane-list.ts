@@ -17,10 +17,10 @@ export class AirplaneList {
   errorMessage:string = "";
   private airplaneService: AirplaneService = inject(AirplaneService);
 
-  ngOnInit(){this.fetchAirplanes()}
+  ngOnInit(){this.fetchAirplanes();}
 
   fetchAirplanes():void{
-    this.isLoading = true;
+    //this.isLoading = true;
     this.errorMessage = '';
 
     this.airplaneService.getAirplanes().subscribe({
