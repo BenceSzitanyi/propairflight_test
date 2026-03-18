@@ -1,0 +1,38 @@
+<h2>Add New Airplane</h2>
+
+<form [formGroup]="airplaneForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label>Tail number: </label>
+    <input formControlName="tailnumber" placeholder="e.g. N12345">
+  </div>
+
+  <div class="form-group">
+    <label>Model: </label>
+    <input formControlName="model" placeholder="e.g. A320">
+  </div>
+
+  <div class="form-group">
+    <label>Manufacturer: </label>
+    <input formControlName="manufacturer" placeholder="e.g. Airbus">
+  </div>
+
+  <div class="form-group">
+    <label>Capacity: </label>
+    <input type="number" formControlName="capacity">
+  </div>
+
+  <div class="form-group">
+    <label>Maintenance interval: </label>
+    <input type="number" formControlName="maintenanceIntervalFlights">
+  </div>
+
+  <div class="form-group">
+    <label>Flights since last maintenance: </label>
+    <input type="number" formControlName="flightsSinceLastMaintenance">
+  </div>
+
+  <div class="actions">
+    <button type="submit" [disabled]="airplaneForm.invalid">Save Airplane</button>
+    <button type="button" routerLink="/airplanes">Cancel</button>
+  </div>
+</form>

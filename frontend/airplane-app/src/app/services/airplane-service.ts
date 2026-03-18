@@ -58,4 +58,14 @@ export class AirplaneService {
       }
     }
   }
+
+  addAirplane(planeData: Omit<Airplane, 'id'>): Airplane {
+    const newAirplane: Airplane = {
+      ...planeData,
+      id: (this.airplanes.length + 1).toString()
+    };
+
+    this.airplanes.push(newAirplane);
+    return newAirplane;
+  }
 }
