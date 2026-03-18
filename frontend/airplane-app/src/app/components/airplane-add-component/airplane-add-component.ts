@@ -15,7 +15,7 @@ export class AirplaneAddComponent {
   private router = inject(Router);
 
   airplaneForm = this.fb.group({
-    tailnumber: ['', Validators.required],
+    tailNumber: ['', Validators.required],
     model: ['', Validators.required],
     manufacturer: ['', Validators.required],
     capacity: ['', Validators.required],

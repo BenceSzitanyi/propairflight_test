@@ -41,6 +41,7 @@ export class AirplaneService {
   constructor() {}
 
   getAirplanes(): Airplane[] {
+    console.log(this.airplanes)
     return this.airplanes;
   }
 
@@ -66,6 +67,7 @@ export class AirplaneService {
     };
 
     this.airplanes.push(newAirplane);
+    console.log(this.airplanes);
     return newAirplane;
   }
 }
