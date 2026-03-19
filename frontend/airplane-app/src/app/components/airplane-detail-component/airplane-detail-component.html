@@ -30,7 +30,8 @@
 }
 
 <div class="controls">
-  <a routerLink="/airplanes">Back to the list</a>
+
+  <button [routerLink]="['/airplanes']">Back to the list</button>
 
   <button (click)="onDelete()" class="delete-btn" [disabled]="isLoading">
     {{ isLoading ? 'Deleting...' : 'Delete Airplane' }}
