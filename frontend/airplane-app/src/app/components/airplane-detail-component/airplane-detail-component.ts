@@ -3,12 +3,11 @@ import { ActivatedRoute, RouterLink, Router } from '@angular/router';
 import { AirplaneService } from '../../services/airplane-service';
 import {Airplane} from '../../models/airplane';
 import {TailNumberPipe} from '../../pipes/tail-number-pipe';
-import { NgClass, CommonModule } from '@angular/common';
 import {MaintenanceBarComponent} from '../maintenance-bar-component/maintenance-bar-component';
 
 @Component({
   selector: 'app-airplane-detail-component',
-  imports: [RouterLink, TailNumberPipe, NgClass, MaintenanceBarComponent],
+  imports: [RouterLink, TailNumberPipe, MaintenanceBarComponent],
   templateUrl: './airplane-detail-component.html',
   styleUrl: './airplane-detail-component.scss',
 })

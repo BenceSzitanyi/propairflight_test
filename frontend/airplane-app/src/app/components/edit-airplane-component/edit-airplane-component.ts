@@ -1,12 +1,12 @@
 import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core';
-import {ActivatedRoute, Router, RouterLink } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators, ReactiveFormsModule} from '@angular/forms';
 import {AirplaneService} from '../../services/airplane-service';
 import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-edit-airplane-component',
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './edit-airplane-component.html',
   styleUrl: './edit-airplane-component.scss',
 })

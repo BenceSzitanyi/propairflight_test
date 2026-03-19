@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, ChangeDetectorRef} from '@angular/core';
+import { Component, inject, ChangeDetectorRef} from '@angular/core';
 import {AirplaneService} from '../../services/airplane-service';
 import {Airplane} from '../../models/airplane';
 import { TailNumberPipe } from '../../pipes/tail-number-pipe';
