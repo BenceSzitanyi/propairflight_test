@@ -59,7 +59,7 @@ export class AirplaneService {
   }
 
   incrementFlights(id:string){
-    return this.http.post<Airplane>("http://localhost:3000/api/airplanes/increment-flights", {})
+    return this.http.post<Airplane>(this.apiUrl+`/${id}/increment-flights`, {})
   }
 
   addAirplane(plane:any):Observable<Airplane>{

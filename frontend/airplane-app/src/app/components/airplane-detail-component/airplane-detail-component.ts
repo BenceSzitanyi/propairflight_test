@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AirplaneService } from '../../services/airplane-service';
 import {Airplane} from '../../models/airplane';
@@ -15,6 +15,7 @@ import {MaintenanceBarComponent} from '../maintenance-bar-component/maintenance-
 export class AirplaneDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private airplaneService = inject(AirplaneService);
+  private cdr = inject(ChangeDetectorRef);
 
   airplane: Airplane | undefined;
   isLoading:boolean = false;
@@ -34,11 +35,13 @@ export class AirplaneDetailComponent implements OnInit {
       next: (data) => {
         this.airplane = data;
         this.isLoading = false;
+        this.cdr.detectChanges();
       },
       error: (error) => {
         this.isLoading = false;
         this.errorMessage = 'Could not find this airplane. It might have been decommissioned.';
         console.error('Detail Load Error:', error);
+        this.cdr.detectChanges();
       }
     });
   }
