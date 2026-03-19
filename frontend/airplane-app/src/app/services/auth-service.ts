@@ -8,7 +8,7 @@ import {tap} from 'rxjs/operators';
 export class AuthService {
   private http = inject(HttpClient);
   private readonly TOKEN_KEY = "airplane_token";
-
+  private token: string | null = localStorage.getItem(this.TOKEN_KEY);
   login(credentials: {email: string, password: string}) {
     return this.http.post<{token:string}>(`http://localhost:3000/api/auth/login`, credentials)
       .pipe(

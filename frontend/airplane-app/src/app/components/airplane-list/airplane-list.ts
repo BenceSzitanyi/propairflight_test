@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ChangeDetectorRef} from '@angular/core';
 import {AirplaneService} from '../../services/airplane-service';
 import {Airplane} from '../../models/airplane';
 import { TailNumberPipe } from '../../pipes/tail-number-pipe';
@@ -17,22 +17,36 @@ export class AirplaneList {
   errorMessage:string = "";
   private airplaneService: AirplaneService = inject(AirplaneService);
 
+  private cdr = inject(ChangeDetectorRef);
+
   ngOnInit(){this.fetchAirplanes();}
 
   fetchAirplanes():void{
-    //this.isLoading = true;
+    this.isLoading = true;
     this.errorMessage = '';
 
     this.airplaneService.getAirplanes().subscribe({
       next: (data) => {
         this.airplanes = data;
         this.isLoading = false;
+
+        this.cdr.detectChanges();
       },
       error: (error) => {
         this.errorMessage = 'Failed to load airplanes. Please check if everything is correct and the server is running';
         this.isLoading = false;
         console.error('HTTP error: ',error);
+        this.cdr.detectChanges();
       }
     });
+
+  /*fetchAirplanes(): void {
+    console.log('DEBUG: fetchAirplanes meghívva!');
+    console.log('DEBUG: Token állapota:', !!localStorage.getItem('token'));
+
+    this.airplaneService.getAirplanes().subscribe({
+      next: (data) => console.log('Siker!', data),
+      error: (err) => console.log('Hiba!', err),
+    });*/
   }
 }
