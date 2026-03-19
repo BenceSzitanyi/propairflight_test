@@ -70,6 +70,10 @@ export class AirplaneService {
     return this.http.put<Airplane>(this.apiUrl+`/${id}`,airplane);
   }
 
+  deleteAirplane(id:string | null):Observable<void>{
+    return this.http.delete<void>(this.apiUrl+`/${id}`);
+  }
+
   /*getById(id: string | null): Airplane | undefined {
     return this.airplanes.find((airplane) => airplane.id === id);
   }

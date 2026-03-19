@@ -1,5 +1,5 @@
 import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink, Router } from '@angular/router';
 import { AirplaneService } from '../../services/airplane-service';
 import {Airplane} from '../../models/airplane';
 import {TailNumberPipe} from '../../pipes/tail-number-pipe';
@@ -16,19 +16,20 @@ export class AirplaneDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private airplaneService = inject(AirplaneService);
   private cdr = inject(ChangeDetectorRef);
+  private router = inject(Router);
 
   airplane: Airplane | undefined;
-  isLoading:boolean = false;
-  errorMessage:string = "";
+  isLoading: boolean = false;
+  errorMessage: string = '';
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    if (id){
+    if (id) {
       this.fetchAirplaneDetails(id);
     }
   }
 
-  fetchAirplaneDetails(id: string):void{
+  fetchAirplaneDetails(id: string): void {
     this.isLoading = true;
     this.errorMessage = '';
     this.airplaneService.getById(id).subscribe({
@@ -42,7 +43,7 @@ export class AirplaneDetailComponent implements OnInit {
         this.errorMessage = 'Could not find this airplane. It might have been decommissioned.';
         console.error('Detail Load Error:', error);
         this.cdr.detectChanges();
-      }
+      },
     });
   }
 
@@ -60,9 +61,33 @@ export class AirplaneDetailComponent implements OnInit {
           this.airplane = updatedPlane;
         },
         error: (error) => {
-          alert("Could not update flight count.");
+          alert('Could not update flight count.');
           console.error('Detail Load Error:', error);
-        }
+        },
+      });
+    }
+  }
+
+  onDelete(): void {
+    const airplane = this.airplane;
+    if (!airplane) {return}
+
+    const idToDelete = airplane.id;
+    const confirmed = window.confirm('Are you sure you want to delete this plane?');
+    if (confirmed) {
+      this.isLoading = true;
+      this.airplaneService.deleteAirplane(airplane.id).subscribe({
+        next: () => {
+          this.isLoading = false;
+          this.router.navigate(['/airplanes']);
+          this.cdr.detectChanges();
+        },
+        error: (err) => {
+          this.errorMessage = 'Could not delete the airplane.';
+          this.isLoading = false;
+          this.cdr.detectChanges();
+          console.error('Delete error:', err);
+        },
       });
     }
   }
