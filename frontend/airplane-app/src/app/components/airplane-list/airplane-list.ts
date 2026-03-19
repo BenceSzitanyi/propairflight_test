@@ -4,6 +4,7 @@ import {Airplane} from '../../models/airplane';
 import { TailNumberPipe } from '../../pipes/tail-number-pipe';
 import { RouterLink } from '@angular/router';
 import { NgClass, CommonModule } from '@angular/common';
+import {AuthService} from '../../services/auth-service';
 
 @Component({
   selector: 'app-airplane-list',
@@ -16,6 +17,7 @@ export class AirplaneList {
   isLoading:boolean = false;
   errorMessage:string = "";
   private airplaneService: AirplaneService = inject(AirplaneService);
+  private authService: AuthService = inject(AuthService);
 
   private cdr = inject(ChangeDetectorRef);
 
@@ -39,14 +41,9 @@ export class AirplaneList {
         this.cdr.detectChanges();
       }
     });
+  }
 
-  /*fetchAirplanes(): void {
-    console.log('DEBUG: fetchAirplanes meghívva!');
-    console.log('DEBUG: Token állapota:', !!localStorage.getItem('token'));
-
-    this.airplaneService.getAirplanes().subscribe({
-      next: (data) => console.log('Siker!', data),
-      error: (err) => console.log('Hiba!', err),
-    });*/
+  onLogout():void{
+    this.authService.logout();
   }
 }
